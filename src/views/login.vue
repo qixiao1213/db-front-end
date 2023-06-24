@@ -5,7 +5,7 @@
             <div class="box-content">
                 <input type="text" placeholder="输入用户名" v-model="userId">
                 <input type="password" placeholder="输入密码" v-model="password">
-                <button @click="signIn(userId, password)">登录</button>
+                <button @click="signClick()">登录</button>
             </div>
         </div>
     </Layout>
@@ -14,9 +14,15 @@
 import { ref, reactive } from 'vue';
 import { signIn } from '@/server/index'
 import Layout from '../layout/Layout.vue'
-
+import { useRouter } from 'vue-router'
 const userId = ref<number>()
 const password = ref('')
+const router = useRouter()
+const signClick =  async () => {
+    await signIn(userId.value, password.value).catch(err => alert(err))
+    await router.push(`/user/${userId.value}`)
+}
+
 
 </script>
 <style lang='less' scoped>

@@ -2,7 +2,7 @@
     <Layout>
         <div class="box">
             <div class="box-content">
-                <UserTable></UserTable>
+                <UserTable :user="data"></UserTable>
             </div>
         </div>
     </Layout>
@@ -10,6 +10,16 @@
 <script setup lang="ts">
 import UserTable from '../components/UserTable.vue';
 import Layout from '../layout/Layout.vue'
+import { type UserInfo,testJson } from '../interface/index'
+import { getUserInfo } from '../server/index'
+import  { useRoute } from 'vue-router'
+const route = useRoute()
+
+console.log(route.params.id);
+const res:Promise<UserInfo>  = getUserInfo(route.params.id as string)
+const data:UserInfo = JSON.parse(JSON.stringify(res))
+
+
 </script>
 <style lang='less' scoped>
 .box {

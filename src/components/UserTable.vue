@@ -1,72 +1,101 @@
 <template>
-
-
   <el-descriptions class="margin-top" title="校友信息" :column="3" :size="size" border>
     <template #extra>
-      <el-button type="primary">编辑</el-button>
+      <el-button type="primary" @click="isVisual = !isVisual">编辑</el-button>
     </template>
-    <el-descriptions-item>
+    <el-descriptions-item v-if="isVisual">
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
-            <user />
-          </el-icon>
           姓名
         </div>
       </template>
-      kooriookami
+      {{ props.user.username }}
     </el-descriptions-item>
-    <el-descriptions-item>
+    <el-descriptions-item v-if="isVisual">
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
-            <iphone />
-          </el-icon>
-          Telephone
+          昵称
         </div>
       </template>
-      18100000000
-    </el-descriptions-item>
-    <el-descriptions-item>
+      {{ props.user.nickname }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
-            <location />
-          </el-icon>
-          Place
+          电子邮件
         </div>
       </template>
-      Suzhou
-    </el-descriptions-item>
-    <el-descriptions-item>
+      {{ props.user.email }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
-            <tickets />
-          </el-icon>
-          Remarks
+          出生日期
         </div>
       </template>
-      <el-tag size="small">School</el-tag>
-    </el-descriptions-item>
-    <el-descriptions-item>
+      {{ props.user.birthday }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
-            <office-building />
-          </el-icon>
-          Address
+          性别
         </div>
       </template>
-      No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province
-    </el-descriptions-item>
-    <el-descriptions-item>
+      {{ props.user.gender }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
+      <template #label>
+        <div class="cell-item">
+          民族
+        </div>
+      </template>
+      {{ props.user.ethnicity }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
+      <template #label>
+        <div class="cell-item">
+          专业
+        </div>
+      </template>
+      {{ props.user.major }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
       <template #label>
         <div class="cell-item">
 
+          入学日期
         </div>
       </template>
-
+      {{ props.user.enrol_date }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
+      <template #label>
+        <div class="cell-item">
+          毕业日期
+        </div>
+      </template>
+      {{ props.user.graduate_date }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
+      <template #label>
+        <div class="cell-item">
+          住址
+        </div>
+      </template>
+      {{ props.user.position ? props.user.position : '无' }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
+      <template #label>
+        <div class="cell-item">
+          微博
+        </div>
+      </template>
+      {{ props.user.weibo_url ? props.user.weibo_url : '无' }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
+      <template #label>
+        <div class="cell-item">
+          github
+        </div>
+      </template>
+      {{ props.user.github_url? props.user.github_url : '无' }}
+    </el-descriptions-item> <el-descriptions-item v-if="isVisual">
+      <template #label>
+        <div class="cell-item">
+          工作单位
+        </div>
+      </template>
+      {{ props.user.company?props.user.company : '无' }}
     </el-descriptions-item>
   </el-descriptions>
 </template>
@@ -81,6 +110,18 @@ import {
   User,
 } from '@element-plus/icons-vue'
 
+import { type UserInfo } from '../interface/index'
+
+const props = defineProps({
+  user: {
+    type: Object as () => UserInfo,
+    required: true,
+  },
+})
+
+
+
+const isVisual = ref<boolean>(true)
 const size = ref('large')
 const iconStyle = computed(() => {
   const marginMap = {
