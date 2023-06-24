@@ -1,5 +1,5 @@
 <template>
-    <Layout>
+    <Login>
         <div class="box">
             <span></span>
             <div class="box-content">
@@ -8,12 +8,12 @@
                 <button @click="signClick()">登录</button>
             </div>
         </div>
-    </Layout>
+    </Login>
 </template>
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { signIn } from '@/server/index'
-import Layout from '../layout/Layout.vue'
+import Login from '../layout/Login.vue'
 import { useRouter } from 'vue-router'
 const userId = ref<number>()
 const password = ref('')

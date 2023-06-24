@@ -23,8 +23,13 @@ const data:UserInfo = JSON.parse(JSON.stringify(res))
 </script>
 <style lang='less' scoped>
 .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60em;
     &-content {
-        top: 40vh;
+        width: 30%;
         position: relative;
         padding: 20px 40px;
         background: rgba(255, 255, 255, 0.05);
@@ -34,10 +39,7 @@ const data:UserInfo = JSON.parse(JSON.stringify(res))
         z-index: 1;
         transform: 0.5s;
         color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+        
     }
 }
 </style>

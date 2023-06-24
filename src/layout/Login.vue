@@ -9,10 +9,6 @@
         <div class="page-footer">
         </div>
     </div>
-    <div class="sidebar">
-        <div class="notes"></div>
-        <div class="msg"></div>
-    </div>
 </template>
 <style lang="less" scoped>
 .content {
@@ -74,42 +70,5 @@ img {
     top: 50%;
     transform: translateY(-50%);
     left: 10%;
-}
-
-.sidebar {
-    position: fixed;
-    width: 30em;
-    height: 80vh;
-    top: 6em;
-    left: 2em;
-    padding: 20px 40px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    z-index: 1;
-    transform: 0.5s;
-    color: #fff;
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-
-    .msg {
-        width: 20em;
-        height: 20em;
-        font-size: 1.5em;
-        font-weight: bold;
-        margin-top: 10px;
-        background-color: #221f1f;
-    }
-
-    .notes {
-        width: 20em;
-        height: 20em;
-        font-size: 1.5em;
-        font-weight: bold;
-        background-color: #221d1d;
-    }
 }
 </style>
