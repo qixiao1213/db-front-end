@@ -10,10 +10,40 @@
         </div>
     </div>
     <div class="sidebar">
-        <div class="notes"></div>
-        <div class="msg"></div>
+        <div class="notes">
+            <div style="color: black;">通知</div>
+            <el-scrollbar>
+                <el-table :data="tableData">
+                    <el-table-column prop="date" label="Date" width="140" />
+                    <el-table-column prop="name" label="Name" width="120" />
+                    <el-table-column prop="address" label="Address" />
+                </el-table>
+            </el-scrollbar>
+        </div>
+        <div class="msg">
+            <div style="color: black; text-align: center;margin-bottom: 5px;">留言</div>
+            <el-scrollbar>
+                <el-table :data="tableData">
+                    <el-table-column prop="date" label="Date" width="140" />
+                    <el-table-column prop="name" label="Name" width="120" />
+                    <el-table-column prop="address" label="Address" />
+                </el-table>
+            </el-scrollbar>
+            <el-button type="primary" :icon="Edit" />
+        </div>
     </div>
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { Delete, Edit, Search, Share, Upload } from '@element-plus/icons-vue'
+const item = {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+}
+const tableData = ref(Array.from({ length: 20 }).fill(item))
+</script>
 <style lang="less" scoped>
 .content {
     height: 100vh;
@@ -91,25 +121,31 @@ img {
     transform: 0.5s;
     color: #fff;
     display: flex;
-    flex-direction:column;
-    justify-content: center;
+    flex-direction: column;
+    justify-content:space-around;
     align-items: center;
 
     .msg {
         width: 20em;
-        height: 20em;
+        height: 16em;
         font-size: 1.5em;
         font-weight: bold;
-        margin-top: 10px;
-        background-color: #221f1f;
+        margin-top: 2em;
     }
 
     .notes {
         width: 20em;
-        height: 20em;
+        height: 16em;
         font-size: 1.5em;
         font-weight: bold;
-        background-color: #221d1d;
+
+        div {
+            position: relative;
+            text-align: center;
+            margin-bottom: 5px;
+        }
     }
 }
 </style>
+
+

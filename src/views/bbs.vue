@@ -1,18 +1,51 @@
 <template>
     <Layout>
         <div class="box">
-            
+            <div class="box-content">
+                <el-table :data="tableData" stripe style="width: 100%">
+                    <el-table-column prop="date" label="Date" width="180" />
+                    <el-table-column prop="name" label="Name" width="180" />
+                    <el-table-column prop="address" label="Address" />
+                </el-table>
+            </div>
+
         </div>
     </Layout>
 </template>
 <script setup lang="ts">
-
-
+import Layout from '../layout/Layout.vue'
+const tableData = [
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+]
 </script>
 <style lang='less' scoped>
 .box {
+    position: fixed;
+
     &-content {
-        top: 40vh;
+        width: 50em;
+        height: 50em;
+        left: 50em;
+        top: 20vh;
         position: relative;
         padding: 20px 40px;
         background: rgba(255, 255, 255, 0.05);
