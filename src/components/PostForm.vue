@@ -26,7 +26,7 @@ let isVisual = ref(true)
 
 
 const onSubmit = () => {
-    console.log('submit!')
+    
 }
 
 const onCancel = () => {

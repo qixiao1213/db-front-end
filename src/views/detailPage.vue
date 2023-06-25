@@ -3,7 +3,7 @@
         <div class="box">
             <div class="box-content">
                 <PostCard class></PostCard>
-
+                <CommentCard class></CommentCard>
             </div>
         </div>
     </Layout>
@@ -12,12 +12,15 @@
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { getPostById } from '../server/index'
+import { useUserStore } from '@/stores/counter';
+
 import Layout from '../layout/Layout.vue'
 
 import PostCard from '../components/PostCard.vue'
 import CommentCard from '../components/CommentCard.vue'
 const route = useRoute()
-
+const userStore = useUserStore()
+alert(userStore.userId);
 
 onMounted(() => {
     const postData = getPostById(route.params.id as string)

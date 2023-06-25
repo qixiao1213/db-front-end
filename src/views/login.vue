@@ -14,11 +14,14 @@ import { ref, reactive } from 'vue';
 import { signIn } from '@/server/index'
 import Login from '../layout/Login.vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/counter';
+const userStore = useUserStore()
 const userId = ref<number>()
 const password = ref('')
 const router = useRouter()
 const signClick =  async () => {
     await signIn(userId.value, password.value).catch(err => alert(err)) //todo
+    userStore.userId = userId.value
     await router.push(`/user/${userId.value}`)
 }
 
