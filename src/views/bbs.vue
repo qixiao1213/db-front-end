@@ -50,9 +50,9 @@ const tableData = [
 
   &-content {
     width: 50em;
-    height: 50em;
+    height: 100%;
     left: 50em;
-    top: 20vh;
+    top: 10em;
     position: relative;
     padding: 20px 40px;
     background: rgba(255, 255, 255, 0.05);

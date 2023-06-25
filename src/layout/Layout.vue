@@ -109,7 +109,7 @@ img {
 .sidebar {
     position: fixed;
     width: 30em;
-    height: 80vh;
+    height: 75%;
     top: 6em;
     left: 2em;
     padding: 20px 40px;
@@ -122,20 +122,20 @@ img {
     color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
 
     .msg {
-        width: 20em;
-        height: 16em;
+        width: 80%;
+        height: 40%;
         font-size: 1.5em;
         font-weight: bold;
         margin-top: 2em;
     }
 
     .notes {
-        width: 20em;
-        height: 16em;
+        width: 80%;
+        height: 40%;
         font-size: 1.5em;
         font-weight: bold;
 

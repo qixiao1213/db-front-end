@@ -2,6 +2,7 @@
     <Layout>
         <div class="box">
             <div class="box-content">
+                <PostCard class></PostCard>
 
             </div>
         </div>
@@ -13,6 +14,8 @@ import { useRoute } from 'vue-router';
 import { getPostById } from '../server/index'
 import Layout from '../layout/Layout.vue'
 
+import PostCard from '../components/PostCard.vue'
+import CommentCard from '../components/CommentCard.vue'
 const route = useRoute()
 
 
@@ -27,7 +30,6 @@ onMounted(() => {
 
     &-content {
         width: 50em;
-        height: 80em;
         left: 50em;
         top: 20vh;
         position: relative;
@@ -40,7 +42,6 @@ onMounted(() => {
         transform: 0.5s;
         color: #fff;
         display: flex;
-        justify-content: center;
         align-items: center;
         flex-direction: column;
     }
