@@ -20,7 +20,9 @@
 <script setup lang="ts">
 import Layout from '../layout/Layout.vue'
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/counter'; 
 const router = useRouter();
+const userStore = useUserStore();
 const handleClick = (row:any) => {
   router.push(`/bbs/detail/${row.id}`)
 }
@@ -43,6 +45,7 @@ const tableData = [
     address: 'No. 189, Grove St, Los Angeles',
   },
 ]
+
 </script>
 <style lang='less' scoped>
 .box {
