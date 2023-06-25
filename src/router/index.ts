@@ -20,6 +20,11 @@ const router = createRouter({
     {
       path: '/bbs',
       component: () => import('../views/bbs.vue')
+
+    },
+    {
+      path: '/bbs/detail/:id',
+      component: () => import('../views/detailPage.vue')
     }
   ]
 })

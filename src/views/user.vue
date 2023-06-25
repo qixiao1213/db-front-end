@@ -2,6 +2,7 @@
     <Layout>
         <div class="box">
             <div class="box-content">
+                <router-link to="/bbs">进入论坛</router-link>
                 <UserTable :user="data"></UserTable>
             </div>
         </div>

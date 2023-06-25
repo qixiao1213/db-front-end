@@ -1,64 +1,71 @@
 <template>
-    <Layout>
-        <div class="box">
-            <div class="box-content">
-                <el-table :data="tableData" stripe style="width: 100%">
-                    <el-table-column prop="date" label="Date" width="180" />
-                    <el-table-column prop="name" label="Name" width="180" />
-                    <el-table-column prop="address" label="Address" />
-                </el-table>
-            </div>
-
-        </div>
-    </Layout>
+  <Layout>
+    <div class="box">
+      <div class="box-content">
+        <el-table :data="tableData" stripe style="width: 100%">
+          <el-table-column prop="id" label="id" width="180" v-if="false" />
+          <el-table-column prop="date" label="日期" width="180" />
+          <el-table-column prop="name" label="标题" width="180" />
+          <el-table-column prop="address" label="Address" />
+          <el-table-column fixed="right" label="操作" width="120">
+            <template #default="{ row }">
+              <el-button link type="primary" size="small" @click="handleClick(row)">进入详情页</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+    </div>
+  </Layout>
 </template>
 <script setup lang="ts">
 import Layout from '../layout/Layout.vue'
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const handleClick = (row:any) => {
+  router.push(`/bbs/detail/${row.id}`)
+}
 const tableData = [
   {
+    id: 1,
     date: '2016-05-03',
-    name: 'Tom',
+    name: 'test',
     address: 'No. 189, Grove St, Los Angeles',
   },
   {
-    date: '2016-05-02',
-    name: 'Tom',
+    id: 2,
+    date: '2016-05-03',
+    name: 'test',
     address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
+  },  {
+    id: 3,
+    date: '2016-05-03',
+    name: 'test',
     address: 'No. 189, Grove St, Los Angeles',
   },
 ]
 </script>
 <style lang='less' scoped>
 .box {
-    position: fixed;
+  position: fixed;
 
-    &-content {
-        width: 50em;
-        height: 50em;
-        left: 50em;
-        top: 20vh;
-        position: relative;
-        padding: 20px 40px;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        z-index: 1;
-        transform: 0.5s;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+  &-content {
+    width: 50em;
+    height: 50em;
+    left: 50em;
+    top: 20vh;
+    position: relative;
+    padding: 20px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1;
+    transform: 0.5s;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 </style>

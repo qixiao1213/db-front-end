@@ -1,7 +1,6 @@
 <template>
     <Login>
         <div class="box">
-            <span></span>
             <div class="box-content">
                 <input type="text" placeholder="输入用户名" v-model="userId">
                 <input type="password" placeholder="输入密码" v-model="password">
@@ -19,7 +18,7 @@ const userId = ref<number>()
 const password = ref('')
 const router = useRouter()
 const signClick =  async () => {
-    await signIn(userId.value, password.value).catch(err => alert(err))
+    await signIn(userId.value, password.value).catch(err => alert(err)) //todo
     await router.push(`/user/${userId.value}`)
 }
 
