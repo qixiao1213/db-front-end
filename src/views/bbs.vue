@@ -5,8 +5,8 @@
         <el-table :data="tableData" stripe style="width: 100%">
           <el-table-column prop="id" label="id" width="180" v-if="false" />
           <el-table-column prop="date" label="日期" width="180" />
-          <el-table-column prop="name" label="标题" width="180" />
-          <el-table-column prop="address" label="Address" />
+          <el-table-column prop="name" label="楼主" width="180" />
+          <el-table-column prop="preview" label="标题" />
           <el-table-column fixed="right" label="操作" width="120">
             <template #default="{ row }">
               <el-button link type="primary" size="small" @click="handleClick(row)">进入详情页</el-button>

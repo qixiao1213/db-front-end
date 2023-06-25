@@ -2,16 +2,22 @@
     <Layout>
         <div class="box">
             <div class="box-content">
+
             </div>
         </div>
     </Layout>
 </template>
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { getPostById } from '../server/index'
 import Layout from '../layout/Layout.vue'
 
+const route = useRoute()
+
+
 onMounted(() => {
-    
+    const postData = getPostById(route.params.id as string)
 })
 
 </script>
@@ -21,7 +27,7 @@ onMounted(() => {
 
     &-content {
         width: 50em;
-        height: 50em;
+        height: 80em;
         left: 50em;
         top: 20vh;
         position: relative;
