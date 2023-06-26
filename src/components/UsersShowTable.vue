@@ -1,62 +1,116 @@
 <template>
-    <el-table :data="tableData" style="width: 100%">
-        <el-table-column fixed prop="id" label="id" width="50" />
-        <el-table-column prop="name" label="Name" width="120" />
-        <el-table-column prop="state" label="State" width="120" />
-        <el-table-column prop="city" label="City" width="120" />
-        <el-table-column prop="address" label="Address" width="600" />
-        <el-table-column prop="zip" label="Zip" width="120" />
-        <el-table-column fixed="right" label="Operations" width="120">
-            <template #default>
-                <el-button link type="primary" size="small" @click="handleClick">Detail</el-button>
-                <el-button link type="primary" size="small">Edit</el-button>
-            </template>
-        </el-table-column>
+    <el-table :data="filterTableData" style="width: 100%; max-height: 25em; " >
+      <el-table-column label="Date" prop="date" />
+      <el-table-column label="Name" prop="name" />
+      <el-table-column align="right">
+        <template #header>
+          <el-input v-model="search" size="small" placeholder="Type to search" />
+        </template>
+        <template #default="scope">
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
+            >Edit</el-button
+          >
+          <el-button
+            size="small"
+            type="danger"
+            @click="handleDelete(scope.$index, scope.row)"
+            >Delete</el-button
+          >
+        </template>
+      </el-table-column>
     </el-table>
-</template>
+  </template>
   
-<script lang="ts" setup>
-const handleClick = () => {
-    console.log('click')
-}
-
-const tableData = [
+  <script lang="ts" setup>
+  import { computed, ref } from 'vue'
+  
+  interface User {
+    date: string
+    name: string
+    address: string
+  }
+  
+  const search = ref('')
+  const filterTableData = computed(() =>
+    tableData.filter(
+      (data) =>
+        !search.value ||
+        data.name.toLowerCase().includes(search.value.toLowerCase())
+    )
+  )
+  const handleEdit = (index: number, row: User) => {
+    console.log(index, row)
+  }
+  const handleDelete = (index: number, row: User) => {
+    console.log(index, row)
+  }
+  
+  const tableData: User[] = [
     {
-        id: '1',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
-        tag: 'Home',
+      date: '2016-05-03',
+      name: 'Tom',
+      address: 'No. 189, Grove St, Los Angeles',
     },
     {
-        id: '1',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
-        tag: 'Office',
+      date: '2016-05-02',
+      name: 'John',
+      address: 'No. 189, Grove St, Los Angeles',
     },
     {
-        id: '1',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
-        tag: 'Home',
+      date: '2016-05-04',
+      name: 'Morgan',
+      address: 'No. 189, Grove St, Los Angeles',
     },
     {
-        id: '1',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
-        tag: 'Office',
+      date: '2016-05-01',
+      name: 'Jessy',
+      address: 'No. 189, Grove St, Los Angeles',
     },
-]
-</script>
+    {
+      date: '2016-05-02',
+      name: 'John',
+      address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+      date: '2016-05-04',
+      name: 'Morgan',
+      address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+      date: '2016-05-01',
+      name: 'Jessy',
+      address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+      date: '2016-05-02',
+      name: 'John',
+      address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+      date: '2016-05-04',
+      name: 'Morgan',
+      address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+      date: '2016-05-01',
+      name: 'Jessy',
+      address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+      date: '2016-05-02',
+      name: 'John',
+      address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+      date: '2016-05-04',
+      name: 'Morgan',
+      address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+      date: '2016-05-01',
+      name: 'Jessy',
+      address: 'No. 189, Grove St, Los Angeles',
+    },
+  ]
+  </script>
   
