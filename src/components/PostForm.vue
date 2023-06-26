@@ -1,9 +1,9 @@
 <template>
     <el-form :model="form" label-width="120px" v-if="isVisual">
-        <el-form-item label="Activity name">
+        <el-form-item label="标题">
             <el-input v-model="form.titile" />
         </el-form-item>
-        <el-form-item label="Activity form">
+        <el-form-item label="内容">
             <el-input v-model="form.content" type="textarea" />
         </el-form-item>
         <el-form-item>
@@ -15,18 +15,19 @@
   
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
+import { postForm } from '@/server';
+import { useUserStore } from '@/stores/counter';
 
-// do not use same name with ref
 const form = reactive({
     titile: '',
     content: '',
 })
-
-let isVisual = ref(true)
+const useStore = useUserStore()
+let isVisual = ref(false)
 
 
 const onSubmit = () => {
-    
+    postForm(form.titile, form.content, useStore.userId)
 }
 
 const onCancel = () => {

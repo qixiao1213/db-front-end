@@ -8,18 +8,23 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CommentCard: typeof import('./src/components/CommentCard.vue')['default']
+    ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
+    ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDescriptions: typeof import('element-plus/es')['ElDescriptions']
     ElDescriptionsItem: typeof import('element-plus/es')['ElDescriptionsItem']
+    ElMain: typeof import('element-plus/es')['ElMain']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Post: typeof import('./src/components/post.vue')['default']
     PostCard: typeof import('./src/components/PostCard.vue')['default']
     PostForm: typeof import('./src/components/PostForm.vue')['default']
+    PostMod: typeof import('./src/components/PostMod.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    UsersShowTable: typeof import('./src/components/UsersShowTable.vue')['default']
     UserTable: typeof import('./src/components/UserTable.vue')['default']
   }
 }

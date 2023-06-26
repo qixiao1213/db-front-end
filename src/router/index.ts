@@ -25,6 +25,10 @@ const router = createRouter({
     {
       path: '/bbs/detail/:id',
       component: () => import('../views/detailPage.vue')
+    },
+    {
+      path: '/admin/:id',
+      component: () => import('../views/admin.vue')
     }
   ]
 })
