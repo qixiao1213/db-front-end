@@ -35,8 +35,8 @@ const signClick =  async () => {
         top: 50%;
         transform: translate(-50%, 50%);
         position: relative;
-        width: 800px;
-        height: 600px;
+        width: 50%;
+        height: 25em;
         padding: 20px 40px;
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
