@@ -11,11 +11,11 @@
 <script setup lang="ts">
 import UserTable from '../components/UserTable.vue';
 import Layout from '../layout/Layout.vue'
-import { type UserInfo,testJson } from '../interface/index'
+import { type UserInfo } from '../interface/index'
 import { getUserInfo } from '../server/index'
 import  { useRoute } from 'vue-router'
-const route = useRoute()
 
+const route = useRoute()
 console.log(route.params.id);
 const res:Promise<UserInfo>  = getUserInfo(route.params.id as string)
 const data:UserInfo = JSON.parse(JSON.stringify(res))

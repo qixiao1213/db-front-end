@@ -6,3 +6,18 @@ export const useUserStore = defineStore('user', () => {
 
   return { userId }
 })
+
+export const usePostStore = defineStore('post', () => {
+  const post = ref([])
+  return { post }
+})
+
+export const useMsgStore = defineStore('msg', () => {
+  const msg = ref([])
+  return { msg }
+})
+
+export const useNoteStore = defineStore('note', () => {
+  const note = ref([])
+  return { note }
+})

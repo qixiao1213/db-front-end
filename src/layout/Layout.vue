@@ -12,31 +12,28 @@
     <div class="sidebar">
         <div class="notes">
             <div style="color: black;">通知</div>
-            <el-scrollbar>
-                <el-table :data="tableData">
-                    <el-table-column prop="date" label="Date" width="140" />
-                    <el-table-column prop="name" label="Name" width="120" />
-                    <el-table-column prop="address" label="Address" />
-                </el-table>
-            </el-scrollbar>
+            <NoteCard :data="noteStore.note"></NoteCard>
         </div>
         <div class="msg">
             <div style="color: black; text-align: center;margin-bottom: 5px;">留言</div>
-            <el-scrollbar>
-                <el-table :data="tableData">
-                    <el-table-column prop="date" label="Date" width="140" />
-                    <el-table-column prop="name" label="Name" width="120" />
-                    <el-table-column prop="address" label="Address" />
-                </el-table>
-            </el-scrollbar>
+            <MsgCard></MsgCard>
             <el-button type="primary" :icon="Edit" />
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { Delete, Edit, Search, Share, Upload } from '@element-plus/icons-vue'
+import { reactive, ref, watch } from 'vue'
+import { Edit } from '@element-plus/icons-vue'
+import NoteCard from '@/components/NoteCard.vue';
+import MsgCard from '@/components/MsgCard.vue';
+import { getNoteById } from '@/server';
+
+
+import { useNoteStore } from '@/stores/counter';
+const noteStore  = useNoteStore()
+console.log(noteStore.note);
+
 const item = {
     date: '2016-05-02',
     name: 'Tom',
