@@ -9,6 +9,7 @@ export const signIn = (id: number | undefined, password: string) => {
         }
     })
 }
+
 export const getUserInfo = (id: string | undefined): Promise<UserInfo> => axios.get(baseUrl + 'login/' + id)  //   /user/id   获取指定id的用户
 export const getUserList = () => axios.get(baseUrl + 'user');
 export const getMsgList = () => axios.get(baseUrl + 'msg')                                                //   /msg       获取所有留言

@@ -6,11 +6,12 @@
                 <input type="password" placeholder="输入密码" v-model="password">
                 <button @click="signClick()">登录</button>
             </div>
+            {{ }}
         </div>
     </Login>
 </template>
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { signIn } from '@/server/index'
 import Login from '../layout/Login.vue'
 import { useRouter } from 'vue-router'
@@ -19,16 +20,37 @@ const userStore = useUserStore()
 const userId = ref<number>()
 const password = ref('')
 const router = useRouter()
-const signClick =  async () => {
+const signClick = async () => {
     await signIn(userId.value, password.value).catch(err => alert(err)) //todo
     userStore.userId = userId.value
     await router.push(`/user/${userId.value}`)
 }
+import axios from 'axios';
+
+let externalData: any;
+const getHello = async () => {
+    try {
+        const res = await axios.get("/api")
+        const data = await res.data
+        externalData = data; // 将data赋值给外部变量
+    } catch (error) {
+        console.log(error);
+    }
+}
+onMounted(async ()=>{
+    await getHello()
+})
+
+
+
+
+
+
+
 
 
 </script>
 <style lang='less' scoped>
-
 .box {
     &-content {
         left: 50%;

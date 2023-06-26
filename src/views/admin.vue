@@ -3,11 +3,10 @@
         <div class="content">
             <div class="left">
                 <UsersShowTables></UsersShowTables>
-                <PostMod></PostMod>
             </div>
             <div class="center">
-                <UsersShowTables></UsersShowTables>
-                <PostMod></PostMod>
+                <NoteCard></NoteCard>
+                <MsgCard></MsgCard>
             </div>
             <div class="right">
                 <PostMod></PostMod>
@@ -22,6 +21,8 @@ import { useUserStore } from '@/stores/counter';
 import { getMsgList, getNoteList, getUserList, getPostList } from '@/server';
 import UsersShowTables from '../components/UsersShowTable.vue';
 import PostMod from '../components/PostMod.vue'
+import NoteCard from '../components/NoteCard.vue';
+import MsgCard from '../components/MsgCard.vue'
 
 const router = useRouter();
 const userStore = useUserStore();

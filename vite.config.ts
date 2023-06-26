@@ -26,8 +26,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://www.starstens.com:5000/8000/', // 设置目标服务器的地址
-        changeOrigin: true, // 设置请求头中的 Host 字段为目标服务器的地址
+        target: 'http://localhost:3000/', // 设置目标服务器的地址
         rewrite: (path) => path.replace(/^\/api/, '') // 重写请求路径，去掉前缀 '/api'
       }
     }
