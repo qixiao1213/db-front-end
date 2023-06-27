@@ -17,7 +17,7 @@ import  { useRoute } from 'vue-router'
 
 const route = useRoute()
 console.log(route.params.id);
-const res:Promise<UserInfo>  = getUserInfo(route.params.id as string)
+const res:Promise<UserInfo>  = getUserInfo(2020218023)
 const data:UserInfo = JSON.parse(JSON.stringify(res))
 
 

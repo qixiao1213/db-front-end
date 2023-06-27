@@ -1,116 +1,47 @@
 <template>
-    <el-table :data="filterTableData" style="width: 100%; max-height: 25em; " >
-      <el-table-column label="Date" prop="date" />
-      <el-table-column label="Name" prop="name" />
-      <el-table-column align="right">
-        <template #header>
-          <el-input v-model="search" size="small" placeholder="Type to search" />
-        </template>
-        <template #default="scope">
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
-            >Edit</el-button
-          >
-          <el-button
-            size="small"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
-            >Delete</el-button
-          >
-        </template>
-      </el-table-column>
-    </el-table>
-  </template>
+  <Suspense>
+    <template #default>
+      <!-- 异步加载的内容 -->
+      <div v-if="isLoading">正在加载数据...</div>
+      <div v-else>
+        <!-- 数据加载完成后要渲染的内容 -->
+        <el-table :data="data" style="width: 100%; max-height: 25em; ">
+          <el-table-column label="Date" prop="create_time" />
+          <el-table-column label="Name" prop="message_content" />
+        </el-table>
+      </div>
+    </template>
+    <template #fallback>
+      <!-- 异步加载时的占位内容 -->
+      <div>正在加载组件...</div>
+    </template>
+  </Suspense>
+</template>
   
-  <script lang="ts" setup>
-  import { computed, ref } from 'vue'
-  
-  interface User {
-    date: string
-    name: string
-    address: string
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
+
+import { getMsgList } from '@/server';
+const isLoading = ref(true); // 标记数据是否正在加载
+let data = ref(null); // 异步加载的数据
+
+interface Msg {
+  create_time: string
+  message_content: string
+}
+
+onMounted(async () => {
+  // 发起异步请求获取数据
+  try {
+    const response = await getMsgList();
+    data.value = await response.data;
+    await console.log(data);
+  } catch (error) {
+    console.error('数据加载失败', error);
+  } finally {
+    isLoading.value = false; // 数据加载完成，设置isLoading为false
   }
-  
-  const search = ref('')
-  const filterTableData = computed(() =>
-    tableData.filter(
-      (data) =>
-        !search.value ||
-        data.name.toLowerCase().includes(search.value.toLowerCase())
-    )
-  )
-  const handleEdit = (index: number, row: User) => {
-    console.log(index, row)
-  }
-  const handleDelete = (index: number, row: User) => {
-    console.log(index, row)
-  }
-  
-  const tableData: User[] = [
-    {
-      date: '2016-05-03',
-      name: 'Tom',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-02',
-      name: 'John',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-04',
-      name: 'Morgan',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-01',
-      name: 'Jessy',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-02',
-      name: 'John',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-04',
-      name: 'Morgan',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-01',
-      name: 'Jessy',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-02',
-      name: 'John',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-04',
-      name: 'Morgan',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-01',
-      name: 'Jessy',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-02',
-      name: 'John',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-04',
-      name: 'Morgan',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-01',
-      name: 'Jessy',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-  ]
-  </script>
+});
+
+</script>
   

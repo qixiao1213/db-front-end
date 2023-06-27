@@ -5,11 +5,11 @@
                 <UsersShowTables></UsersShowTables>
             </div>
             <div class="center">
-                <NoteCard :data=""></NoteCard>
+                <NoteCard></NoteCard>
                 <MsgCard></MsgCard>
             </div>
             <div class="right">
-                <PostMod></PostMod>
+                <PostModCard></PostModCard>
             </div>
         </div>
     </Login>
@@ -17,21 +17,26 @@
 <script setup lang="ts">
 import Login from '../layout/Login.vue'
 import { useRouter } from 'vue-router';
-import { useUserStore, useNoteStore } from '@/stores/counter';
-import { getMsgList, getNoteList, getUserList, getPostList, getNoteById } from '@/server';
 import UsersShowTables from '../components/UsersShowTable.vue';
-import PostMod from '../components/PostMod.vue'
+import PostModCard from '../components/PostModCard.vue'
 import NoteCard from '../components/NoteCard.vue';
 import MsgCard from '../components/MsgCard.vue'
-import { onMounted, ref } from 'vue';
 
 const router = useRouter();
-const userStore = useUserStore();
+import { useUserStore, useNoteStore, useMsgStore, usePostStore } from '@/stores/counter';
+const userStore = useUserStore()
+const noteStore = useNoteStore()
+const postStore = usePostStore()
+const msgStore = useMsgStore()
 
-// const msgList = getMsgList()
-// const noteList = getMsgList()
-// const userList = getUserList()
-// const postList  =  getPostList()
+import { getNoteById } from '@/server';
+import { ref } from 'vue';
+let data = ref([]);
+getNoteById(1).then((res) => {
+    data = res.data
+    noteStore.note = <any>data
+})
+
 </script>
 
 

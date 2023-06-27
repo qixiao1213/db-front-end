@@ -10,15 +10,16 @@
     </Login>
 </template>
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue';
+import { ref } from 'vue';
 import { signIn } from '@/server/index'
 import Login from '../layout/Login.vue'
 import { useRouter } from 'vue-router'
+import { useUserStore, useNoteStore, useMsgStore, usePostStore } from '@/stores/counter';
+const userStore = useUserStore()
 const router = useRouter()
-import { getNoteById, getMsgList, getPostList } from '@/server/index';
 
 
-const userId = ref<number>()
+const userId = ref<number>(2020218023)
 const password = ref('')
 
 const signClick = async () => {
@@ -26,43 +27,6 @@ const signClick = async () => {
     await signIn(userId.value, password.value).catch(err => alert(err)) //todo
     await router.push(`/user/${userId.value}`)
 }
-
-import { useUserStore, useNoteStore, useMsgStore, usePostStore } from '@/stores/counter';
-const userStore = useUserStore()
-const noteStore = useNoteStore()
-const postStore = usePostStore()
-const msgStore = useMsgStore()
-let data = ref([]);
-getNoteById(1).then((res) => {
-    data = res.data
-    noteStore.note = <any>data
-})
-getMsgList().then((res) => {
-    data = res.data
-    msgStore.msg = <any>data
-})
-
-getPostList().then((res) => {
-    data = res.data
-    postStore.post = <any>data
-})
-
-
-
-
-// let externalData: any;
-// const getHello = async () => {
-//     try {
-//         const res = await axios.get("/api")
-//         const data = await res.data
-//         externalData = data; // 将data赋值给外部变量
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-// onMounted(async ()=>{
-//     await getHello()
-// })
 
 </script>
 <style lang='less' scoped>
