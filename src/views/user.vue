@@ -3,7 +3,7 @@
         <div class="box">
             <div class="box-content">
                 <router-link to="/bbs">进入论坛</router-link>
-                <UserTable :user="data"></UserTable>
+                <UserTable></UserTable>
             </div>
         </div>
     </Layout>
@@ -14,13 +14,7 @@ import Layout from '../layout/Layout.vue'
 import { type UserInfo } from '../interface/index'
 import { getUserInfo } from '../server/index'
 import  { useRoute } from 'vue-router'
-
 const route = useRoute()
-console.log(route.params.id);
-const res:Promise<UserInfo>  = getUserInfo(2020218023)
-const data:UserInfo = JSON.parse(JSON.stringify(res))
-
-
 </script>
 <style lang='less' scoped>
 .box {
