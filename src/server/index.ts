@@ -16,8 +16,8 @@ export const getUserList = () => axios.get(baseUrl + '/user');
 export const getMsgList = () => axios.get(baseUrl + '/message/1')                                                //   /msg       获取所有留言
 export const getNoteList = () => axios.get(baseUrl + '/announcement')
 export const getNoteById = (user_id: number | string) => axios.get(baseUrl + '/announcement/' + user_id)                                         //   /note      获取所有通知
-export const getPostList = () => axios.get(baseUrl + '/post')                                                 //  /post       获取所有帖子
-export const getPostById = (id: string) => axios.get(baseUrl + '/post' + id)                                              //  /post       获取所有帖子
+export const getPostList = () => axios.get(baseUrl + '/post/home')                                                 //  /post       获取所有帖子
+export const getPostById = (id: string) => axios.get(baseUrl + '/post/' + id)                                              //  /post       获取所有帖子
 export const postMsg = (content: string, useId: string) => axios.post(baseUrl + '/message', {
     params: {
         content,
@@ -31,5 +31,5 @@ export const postForm = (title: string, content: string, useId: string) => axios
         content,
         useId,
     }
-}) 
+})
 

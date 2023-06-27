@@ -25,7 +25,7 @@ import { getMsgList } from '@/server';
 const isLoading = ref(true); // 标记数据是否正在加载
 let data = ref(null); // 异步加载的数据
 
-interface Msg {
+interface Post {
   create_time: string
   message_content: string
 }

@@ -28,6 +28,7 @@ declare module 'vue' {
     PostForm: typeof import('./src/components/PostForm.vue')['default']
     PostMod: typeof import('./src/components/PostMod.vue')['default']
     PostModCard: typeof import('./src/components/PostModCard.vue')['default']
+    PostUserCard: typeof import('./src/components/PostUserCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UsersShowTable: typeof import('./src/components/UsersShowTable.vue')['default']
