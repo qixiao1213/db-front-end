@@ -1,15 +1,15 @@
 <template>
     <Login>
         <div class="content">
-            <div class="left">
-                <UsersShowTables></UsersShowTables>
+            <div class="content-left">
+                <UserCard></UserCard>
             </div>
-            <div class="center">
-                <NoteCard></NoteCard>
-                <MsgCard></MsgCard>
+            <div class="content-center">
+                <NoteCard :isAdmin="isAdmin"></NoteCard>
+                <MsgCard :isAdmin="isAdmin"></MsgCard>
             </div>
-            <div class="right">
-                <PostModCard></PostModCard>
+            <div class="content-right">
+                <PostModCard :isAdmin="isAdmin"></PostModCard>
             </div>
         </div>
     </Login>
@@ -17,14 +17,15 @@
 <script setup lang="ts">
 import Login from '../layout/Login.vue'
 import { useRouter } from 'vue-router';
-import UsersShowTables from '../components/UsersShowTable.vue';
 import PostModCard from '../components/PostModCard.vue'
 import NoteCard from '../components/NoteCard.vue';
 import MsgCard from '../components/MsgCard.vue'
+import UserCard from '../components/UserCard.vue'
+
 
 const router = useRouter();
 
-
+const isAdmin = true
 
 </script>
 
@@ -36,35 +37,34 @@ const router = useRouter();
     margin: 0;
     position: relative;
     width: 100%;
-}
-
-.left {
-    position: relative;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 30%;
-    left: 5em;
-}
 
-.center {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    left: 10em;
-    width: 30%;
-}
+    &-left {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-.right {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    left: 15em;
-    width: 25%;
+    }
+
+    &-center {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    &-right {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
 }
 </style>

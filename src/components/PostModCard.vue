@@ -5,13 +5,16 @@
       <div v-if="isLoading">正在加载数据...</div>
       <div v-else>
         <!-- 数据加载完成后要渲染的内容 -->
-        <el-table :data="data" style="width: 100%; max-height: 25em; ">
-          <el-table-column label="Date" prop="create_time" />
-          <el-table-column label="Name" prop="message_content" />
-          <el-table-column align="right">
+        <el-table :data="data" style="width: 100%;" max-height="50em">
+          <el-table-column label="帖子ID" prop="post_id" width="100" />
+          <el-table-column label="评论ID" prop="comment_id" width="100" />
+          <el-table-column label="时间" prop="create_time" width="200" />
+          <el-table-column label="内容" prop="content" width="300" />
+          <el-table-column label="状态" prop="examine_state" width="100" />
+          <el-table-column align="right" v-if="props.isAdmin" width="100">
             <template #default="scope">
-              <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-              <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+              <el-button size="small" @click="handleChecked(scope.$index, scope.row)">通过</el-button>
+              <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -25,22 +28,18 @@
 </template>
   
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
-
-import { getPostModList } from '@/server';
+import { onMounted, ref, type Ref } from 'vue'
+import { getPostModList, delMsg, delNote, delPost, delComment } from '@/server';
+import { type Post, type PostCheck } from '../interface'
 const isLoading = ref(true); // 标记数据是否正在加载
-let data = ref(null); // 异步加载的数据
-
-interface Post {
-  create_time: string
-  message_content: string
-}
+let data: Ref<PostCheck | undefined> = ref(); // 异步加载的数据
+const props = defineProps(['isAdmin']);
 
 onMounted(async () => {
   // 发起异步请求获取数据
   try {
     const response = await getPostModList();
-    data.value = await response.data;
+    data.value = await response.data.check;
   } catch (error) {
     console.error('数据加载失败', error);
   } finally {
@@ -49,18 +48,23 @@ onMounted(async () => {
 });
 
 
-interface User {
-  date: string
-  name: string
-  address: string
-}
+const handleChecked = (index: number, row: PostCheck) => {
 
-
-const handleEdit = (index: number, row: User) => {
-  console.log(index, row)
 }
-const handleDelete = (index: number, row: User) => {
-  console.log(index, row)
+const handleDelete = async (index: number, row: PostCheck) => {
+  if (row.comment_id === undefined) {
+    await delPost(row.post_id)
+    const response = await getPostModList();
+    data.value = await response.data.check;
+    await alert('删除成功')
+  }
+  else {
+    await delComment(row.comment_id)
+    const response = await getPostModList();
+    data.value = await response.data.check;
+    await alert('删除成功')
+  }
+
 }
 
 

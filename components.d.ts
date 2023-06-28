@@ -32,6 +32,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideBar: typeof import('./src/components/SideBar.vue')['default']
+    UserCard: typeof import('./src/components/UserCard.vue')['default']
     UsersShowTable: typeof import('./src/components/UsersShowTable.vue')['default']
     UserTable: typeof import('./src/components/UserTable.vue')['default']
   }

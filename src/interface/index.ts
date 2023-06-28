@@ -26,15 +26,15 @@ export interface Post_ComList {
 }
 
 export interface Post {
-  create_time: string
-  is_examine: number
-  is_hidden: boolean
-  is_topping: boolean
-  post_id: number
-  post_title: string
-  post_type: number
-  total_floor: number
-  user_id: string
+  create_time?: string
+  is_examine?: number
+  is_hidden?: boolean
+  is_topping?: boolean
+  post_id?: number
+  post_title?: string
+  post_type?: number
+  total_floor?: number
+  user_id?: string
 }
 
 export interface Comment {
@@ -48,4 +48,30 @@ export interface Comment {
   modify_time: string
   post_id: number
   user_id: string
+}
+
+export interface Message {
+  create_time?: string
+  message_content?: string
+  message_id: string
+}
+
+
+export interface Note {
+  announce_type: string
+  announce_content: string
+  announce_id: string
+}
+
+export interface PostCheck {
+  create_time: string
+  examine_state: number
+  is_hidden: boolean
+  is_topping: boolean
+  post_id: number
+  post_title: string
+  post_type: number
+  total_floor: number
+  user_id: string
+  comment_id: string
 }

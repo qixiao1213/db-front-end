@@ -16,23 +16,20 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import { postForm } from '@/server';
-import { useUserStore } from '@/stores/counter';
+
+const props = defineProps(['user_id'])
+
 
 const form = reactive({
     titile: '',
     content: '',
 })
-const useStore = useUserStore()
 let isVisual = ref(true)
 
 
-const onSubmit = () => {
-    postForm(form.titile, form.content, useStore.userId)
+const onSubmit = async () => {
+    const res = await postForm(form.titile, form.content, props.user_id)
+    await console.log(res);
 }
-
-const onCancel = () => {
-    isVisual.value = !isVisual.value;
-}
-
 </script>
   

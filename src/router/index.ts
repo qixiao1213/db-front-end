@@ -18,9 +18,8 @@ const router = createRouter({
       component: () => import('../views/user.vue')
     },
     {
-      path: '/bbs',
+      path: '/bbs/:id',
       component: () => import('../views/bbs.vue')
-
     },
     {
       path: '/bbs/detail/:id',
