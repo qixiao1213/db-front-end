@@ -23,19 +23,8 @@ import NoteCard from '../components/NoteCard.vue';
 import MsgCard from '../components/MsgCard.vue'
 
 const router = useRouter();
-import { useUserStore, useNoteStore, useMsgStore, usePostStore } from '@/stores/counter';
-const userStore = useUserStore()
-const noteStore = useNoteStore()
-const postStore = usePostStore()
-const msgStore = useMsgStore()
 
-import { getNoteById } from '@/server';
-import { ref } from 'vue';
-let data = ref([]);
-getNoteById(1).then((res) => {
-    data = res.data
-    noteStore.note = <any>data
-})
+
 
 </script>
 

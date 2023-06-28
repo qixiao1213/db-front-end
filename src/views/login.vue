@@ -10,22 +10,31 @@
     </Login>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { reactive, ref, type Ref } from 'vue';
 import { signIn } from '@/server/index'
 import Login from '../layout/Login.vue'
 import { useRouter } from 'vue-router'
-import { useUserStore, useNoteStore, useMsgStore, usePostStore } from '@/stores/counter';
+import { useUserStore, useTokenStore } from '@/stores/counter';
 const userStore = useUserStore()
+const tokenStore = useTokenStore()
 const router = useRouter()
+const userId = ref(123456)
+const password = ref('123456')
 
-
-const userId = ref<number>(2020218023)
-const password = ref('')
 
 const signClick = async () => {
-    userStore.userId = userId.value
-    await signIn(userId.value, password.value).catch(err => alert(err)) //todo
-    await router.push(`/user/${userId.value}`)
+    try {
+        const response = await signIn(userId.value, password.value); // 登录请求
+        if (response.data.msg_condition === 'login successful') {
+            localStorage.setItem('token', response.data.access_token); // 存储令牌
+            console.log(`/user/${userId.value}`);
+            router.push(`/user/${userId.value}`); // 跳转到用户页面
+        } else {
+            alert('用户名或密码错误'); // 登录失败，弹出错误提示
+        }
+    } catch (error) {
+        alert('登录请求失败'); // 登录请求异常，弹出错误提示
+    }
 }
 
 </script>

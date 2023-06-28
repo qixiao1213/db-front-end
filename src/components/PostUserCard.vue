@@ -34,7 +34,6 @@ const router = useRouter()
 
 
 const handleClick = (row: any) => {
-
     router.push(`/bbs/detail/${row.post_id}`)
 }
 

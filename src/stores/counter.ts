@@ -21,3 +21,8 @@ export const useNoteStore = defineStore('note', () => {
   const note = ref([])
   return { note }
 })
+
+export const useTokenStore = defineStore('token', () => {
+  const token = ref()
+  return { token }
+})

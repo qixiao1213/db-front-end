@@ -5,7 +5,7 @@
       <div v-if="isLoading">正在加载数据...</div>
       <div v-else>
         <!-- 数据加载完成后要渲染的内容 -->
-        <el-table :data="data" style="width: 100%; max-height: 25em; ">
+        <el-table :data="data" style="width: 100%" max-height="350">
           <el-table-column label="Date" prop="create_time" />
           <el-table-column label="Name" prop="message_content" />
         </el-table>
@@ -20,10 +20,16 @@
   
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-
-import { getMsgList } from '@/server';
+import { getUserMsgList } from '@/server';
 const isLoading = ref(true); // 标记数据是否正在加载
 let data = ref(null); // 异步加载的数据
+
+const props = defineProps({
+  uid: {
+    type: String,
+    required: false
+  },
+});
 
 interface Post {
   create_time: string
@@ -33,7 +39,7 @@ interface Post {
 onMounted(async () => {
   // 发起异步请求获取数据
   try {
-    const response = await getMsgList();
+    const response = await getUserMsgList();
     data.value = await response.data;
   } catch (error) {
     console.error('数据加载失败', error);

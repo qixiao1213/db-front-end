@@ -16,7 +16,7 @@
         </div>
         <div class="msg">
             <div style="color: black; text-align: center;margin-bottom: 5px;">留言</div>
-            <MsgCard></MsgCard>
+            <MsgCard ></MsgCard>
             <el-button type="primary" :icon="Edit" />
         </div>
     </div>
@@ -27,19 +27,6 @@ import { reactive, ref, watch } from 'vue'
 import { Edit } from '@element-plus/icons-vue'
 import NoteCard from '@/components/NoteCard.vue';
 import MsgCard from '@/components/MsgCard.vue';
-
-
-const data = {
-    "card_number": "530000000000000000",
-    "create_time": "2023-06-26 20:26:19",
-    "email": "13529061086@qq.com",
-    "last_login_time": "2023-06-26 20:26:19",
-    "name": "",
-    "password_hash": "snufnausebybfjngfd",
-    "token": "123456789",
-    "user_group": 1,
-    "user_id": "2020218023"
-}
 
 </script>
 <style lang="less" scoped>

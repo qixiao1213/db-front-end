@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 
-import { getNoteById } from '@/server';
+import { getNoteList } from '@/server';
 const isLoading = ref(true); // 标记数据是否正在加载
 let data = ref(null); // 异步加载的数据
 
@@ -33,7 +33,7 @@ interface Note {
 onMounted(async () => {
   // 发起异步请求获取数据
   try {
-    const response = await getNoteById(2020218023);
+    const response = await getNoteList();
     data.value = await response.data;
   } catch (error) {
     console.error('数据加载失败', error);

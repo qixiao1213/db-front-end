@@ -3,7 +3,7 @@
         <div class="box">
             <div class="box-content">
                 <router-link to="/bbs">进入论坛</router-link>
-                <UserTable></UserTable>
+                <UserTable :uid="<string>uid"></UserTable>
             </div>
         </div>
     </Layout>
@@ -11,10 +11,9 @@
 <script setup lang="ts">
 import UserTable from '../components/UserTable.vue';
 import Layout from '../layout/Layout.vue'
-import { type UserInfo } from '../interface/index'
-import { getUserInfo } from '../server/index'
 import  { useRoute } from 'vue-router'
 const route = useRoute()
+const uid = route.params.id
 </script>
 <style lang='less' scoped>
 .box {

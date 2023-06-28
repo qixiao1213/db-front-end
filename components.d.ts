@@ -31,6 +31,7 @@ declare module 'vue' {
     PostUserCard: typeof import('./src/components/PostUserCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideBar: typeof import('./src/components/SideBar.vue')['default']
     UsersShowTable: typeof import('./src/components/UsersShowTable.vue')['default']
     UserTable: typeof import('./src/components/UserTable.vue')['default']
   }
