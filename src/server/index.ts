@@ -65,7 +65,7 @@ export const msgForm = (message_content: string) => api.post(baseUrl + '/message
     }
 })
 
-export const noteForm = (announce_content: string) => api.post(baseUrl + '/announce/add', {
+export const noteForm = (announce_content: string) => api.post(baseUrl + '/announcement/add', {
     announce_content,
 }, {
     headers: {
@@ -73,8 +73,8 @@ export const noteForm = (announce_content: string) => api.post(baseUrl + '/annou
     }
 })
 
-export const banwordForm = (message_content: string) => api.post(baseUrl + '/ban_word/add', {
-    content: message_content
+export const banwordForm = (word: string) => api.post(baseUrl + '/ban_word/add', {
+    word
 }, {
     headers: {
         "Content-Type": 'application/json'
@@ -88,4 +88,4 @@ export const delPost = (id: string | number | undefined) => api.delete(baseUrl +
 export const delComment = (id: string | number | undefined) => api.delete(baseUrl + '/post/comment/' + id)
 export const delBanWord = (id: string | number | undefined) => api.delete(baseUrl + '/banword/' + id)
 export const postCheck = (id: string | number | undefined) => api.get(baseUrl + '/post/check' + id)
-export const commentCheck = (id: string | number | undefined) => api.get(baseUrl + '/comment/check' + id)
+export const commentCheck = (id: string | number | undefined) => api.get(baseUrl + '/post/comment/check' + id)

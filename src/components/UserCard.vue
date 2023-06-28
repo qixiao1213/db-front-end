@@ -7,7 +7,7 @@
                 <!-- 数据加载完成后要渲染的内容 -->
                 <el-table :data="data" style="width: 100%" max-height="60em">
                     <el-table-column label="ID" prop="user_id" width="150" />
-                    <el-table-column label="昵称" prop="nickname_text" width="100" />
+                    <el-table-column label="email" prop="email" width="100" />
                     <el-table-column align="right" label="操作" width="150">
                         <template #default="scope">
                             <el-button size="small" type="danger"
@@ -45,6 +45,7 @@ onMounted(async () => {
     try {
         const response = await getUserList();
         data.value = await response.data.user_list;
+        await console.log(data);
     } catch (error) {
         console.error('数据加载失败', error);
     } finally {
