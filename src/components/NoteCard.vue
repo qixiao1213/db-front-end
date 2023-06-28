@@ -45,7 +45,7 @@ onMounted(async () => {
   // 发起异步请求获取数据
   try {
     const response = await getNoteList();
-    data.value = await response.data;
+    await console.log(response.data);
   } catch (error) {
     console.error('数据加载失败', error);
   } finally {

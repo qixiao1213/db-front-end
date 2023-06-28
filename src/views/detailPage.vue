@@ -15,6 +15,7 @@
                                             <el-table-column label="楼层" prop="floor" width="60" />
                                             <el-table-column label="Content" prop="comment_content" width="600" />
                                         </el-table>
+                                        <CommentForm :post_id="post_id"></CommentForm>
                                     </div>
                                 </template>
                             </el-card>
@@ -34,20 +35,23 @@ import { onMounted, ref, type Ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getPostById } from '../server/index'
 import { type Post_ComList } from '../interface/index'
-
+import CommentForm from '../components/ComForm.vue'
 import Layout from '../layout/Layout.vue'
 import type { AxiosError } from 'axios';
 const route = useRoute()
 const router = useRouter()
 const data: Ref<Post_ComList | undefined> = ref()
 const isLoading = ref(true)
+
+const post_id = route.params.id
+
 onMounted(async () => {
     // 发起异步请求获取数据
     try {
-        const response = await getPostById(route.params.id as string);
+        const response = await getPostById(post_id as string);
         data.value = await response.data;
         await console.log(data);
-    } catch (error:any) {
+    } catch (error: any) {
         if (error.response.status === 422) {
             alert('请登录')
             router.push('/')

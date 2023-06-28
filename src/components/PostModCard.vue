@@ -29,7 +29,7 @@
   
 <script lang="ts" setup>
 import { onMounted, ref, type Ref } from 'vue'
-import { getPostModList, delMsg, delNote, delPost, delComment } from '@/server';
+import { getPostModList, delMsg, delNote, delPost, delComment, postCheck, commentCheck } from '@/server';
 import { type Post, type PostCheck } from '../interface'
 const isLoading = ref(true); // 标记数据是否正在加载
 let data: Ref<PostCheck | undefined> = ref(); // 异步加载的数据
@@ -48,8 +48,19 @@ onMounted(async () => {
 });
 
 
-const handleChecked = (index: number, row: PostCheck) => {
-
+const handleChecked = async (index: number, row: PostCheck) => {
+  if (row.comment_id === undefined) {
+    await postCheck(row.post_id)
+    const response = await getPostModList();
+    data.value = await response.data.check;
+    await alert('审核完成！')
+  }
+  else {
+    await commentCheck(row.comment_id)
+    const response = await getPostModList();
+    data.value = await response.data.check;
+    await alert('审核完成！')
+  }
 }
 const handleDelete = async (index: number, row: PostCheck) => {
   if (row.comment_id === undefined) {
@@ -64,7 +75,6 @@ const handleDelete = async (index: number, row: PostCheck) => {
     data.value = await response.data.check;
     await alert('删除成功')
   }
-
 }
 
 

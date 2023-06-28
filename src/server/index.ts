@@ -49,6 +49,14 @@ export const postForm = (title: string, content: string) => api.post(baseUrl + '
         "Content-Type": 'application/json'
     }
 })
+export const commentForm = (post_id: string,comment_content: string) => api.post(baseUrl + '/comment/add', {
+    post_id,
+    comment_content
+}, {
+    headers: {
+        "Content-Type": 'application/json'
+    }
+})
 export const msgForm = (message_content: string) => api.post(baseUrl + '/message/add', {
     message_content,
 }, {
@@ -65,7 +73,7 @@ export const noteForm = (announce_content: string) => api.post(baseUrl + '/annou
     }
 })
 
-export const banwordForm = (message_content: string) => api.post(baseUrl + '/ban_word', {
+export const banwordForm = (message_content: string) => api.post(baseUrl + '/ban_word/add', {
     content: message_content
 }, {
     headers: {
