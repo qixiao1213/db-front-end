@@ -15,16 +15,15 @@ import { signIn } from '@/server/index'
 import Login from '../layout/Login.vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
-const userId = ref(123456)
-const password = ref('123456')
-
+const userId = ref(2020218022)
+const password = ref('2020218022')
 
 const signClick = async () => {
-    localStorage.setItem('token', '')
     try {
         const response = await signIn(userId.value, password.value); // 登录请求
         if (response.data.msg_condition === 'login successful') {
-            const token = response.data.access_token_cookie;
+            const token = response.data.access_token;
+            console.log(token);
             localStorage.setItem('token', token);
             router.push(`/user/${userId.value}`); // 跳转到用户页面
         } else {

@@ -31,13 +31,14 @@
 </template>
 <script setup lang="ts">
 import { onMounted, ref, type Ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { getPostById } from '../server/index'
 import { type Post_ComList } from '../interface/index'
 
 import Layout from '../layout/Layout.vue'
+import type { AxiosError } from 'axios';
 const route = useRoute()
-
+const router = useRouter()
 const data: Ref<Post_ComList | undefined> = ref()
 const isLoading = ref(true)
 onMounted(async () => {
@@ -46,8 +47,11 @@ onMounted(async () => {
         const response = await getPostById(route.params.id as string);
         data.value = await response.data;
         await console.log(data);
-    } catch (error) {
-        console.error('数据加载失败', error);
+    } catch (error:any) {
+        if (error.response.status === 422) {
+            alert('请登录')
+            router.push('/')
+        }
     } finally {
         isLoading.value = false; // 数据加载完成，设置isLoading为false
     }

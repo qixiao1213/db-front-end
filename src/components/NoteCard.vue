@@ -7,11 +7,10 @@
         <!-- 数据加载完成后要渲染的内容 -->
         <el-table :data="data" style="width: 100%" max-height="25em">
           <el-table-column label="ID" v-if="props.isAdmin" prop="announce_id" width="100" />
-          <el-table-column label="Date" prop="announce_type" width="200" />
-          <el-table-column label="内容" prop="announce_content" width="300" />
+          <el-table-column label="日期" prop="announce_type" width="200" />
+          <el-table-column label="通知内容" prop="announce_content" width="300" />
           <el-table-column label="操作" v-if="props.isAdmin" width="100" align="right">
             <template #default="scope">
-              <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
               <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
             </template>
           </el-table-column>
@@ -27,7 +26,6 @@
   
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-
 import { delNote, getNoteList } from '@/server';
 import { type Note } from '../interface/index'
 const isLoading = ref(true); // 标记数据是否正在加载

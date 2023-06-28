@@ -5,10 +5,10 @@
       <div v-if="isLoading">正在加载数据...</div>
       <div v-else>
         <!-- 数据加载完成后要渲染的内容 -->
-        <el-table :data="data" style="width: 100%" max-height="25em">
+        <el-table  :data="data" style="width: 100%" max-height="25em">
           <el-table-column label="ID" v-if="props.isAdmin" prop="message_id" width="100" />
           <el-table-column label="Date" prop="create_time" width="200" />
-          <el-table-column label="内容" prop="message_content" width="300" />
+          <el-table-column label="留言内容" prop="message_content" width="300" />
           <el-table-column align="right" label="操作" width="100" v-if="props.isAdmin">
             <template #default="scope">
               <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
@@ -27,7 +27,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { delMsg, getUserMsgList } from '@/server';
-
+import { useRouter } from 'vue-router';
 import { type Message } from '../interface/index'
 const isLoading = ref(true); // 标记数据是否正在加载
 let data = ref(null); // 异步加载的数据
@@ -39,14 +39,17 @@ const handleDelete = async (index: number, row: Message) => {
   data.value = await response.data;
   await alert("删除成功")
 }
-
+const router = useRouter()
 onMounted(async () => {
   // 发起异步请求获取数据
   try {
     const response = await getUserMsgList();
     data.value = await response.data;
-  } catch (error) {
-    console.error('数据加载失败', error);
+  } catch (error:any) {
+    if (error.response.status === 422) {
+            alert('请登录')
+            router.push('/')
+        }
   } finally {
     isLoading.value = false; // 数据加载完成，设置isLoading为false
   }

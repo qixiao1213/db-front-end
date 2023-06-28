@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BanForm: typeof import('./src/components/BanForm.vue')['default']
     BanWord: typeof import('./src/components/BanWord.vue')['default']
     CommentCard: typeof import('./src/components/CommentCard.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
@@ -23,8 +24,9 @@ declare module 'vue' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     MsgCard: typeof import('./src/components/MsgCard.vue')['default']
+    MsgForm: typeof import('./src/components/MsgForm.vue')['default']
     NoteCard: typeof import('./src/components/NoteCard.vue')['default']
-    NoteForm: typeof import('./src/components/noteForm.vue')['default']
+    NoteForm: typeof import('./src/components/NoteForm.vue')['default']
     Post: typeof import('./src/components/post.vue')['default']
     PostCard: typeof import('./src/components/PostCard.vue')['default']
     PostForm: typeof import('./src/components/PostForm.vue')['default']

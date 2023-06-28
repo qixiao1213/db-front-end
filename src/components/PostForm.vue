@@ -26,7 +26,7 @@ let form = reactive({
 })
 
 const onSubmit = async () => {
-    const res = await postForm(form.title, form.content, props.user_id)
+    const res = await postForm(form.title, form.content)
     if (res.status === 200) {
         form.content = ''
         form.title = ''

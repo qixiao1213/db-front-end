@@ -127,7 +127,6 @@
 import { computed, ref, onMounted, type Ref } from 'vue'
 const props = defineProps({
   uid: {
-    type: String,
     required: true
   },
 });
@@ -145,16 +144,11 @@ const router = useRouter()
 onMounted(async () => {
   // 发起异步请求获取数据
   try {
-    const response = await getUserInfo(props.uid);
+    const response = await getUserInfo(props.uid as string);
     data.value = await response.data;
     await console.log(data);
   } catch (error: any) {
-    console.log(error);
-    if (error.response.status === 422) {
-      console.log(data);
-      // alert('请登录')
-      // router.push('/')
-    }
+    console.log(error); 
   } finally {
     isLoading.value = false; // 数据加载完成，设置isLoading为false
   }

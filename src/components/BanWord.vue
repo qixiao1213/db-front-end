@@ -25,7 +25,7 @@
     
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { delBanWord, delMsg, getUserMsgList } from '@/server';
+import { delBanWord, delMsg, getBanWordList, getUserMsgList } from '@/server';
 
 import { type Message } from '../interface/index'
 const isLoading = ref(true); // 标记数据是否正在加载
@@ -33,7 +33,7 @@ let data = ref(null); // 异步加载的数据
 
 const handleDelete = async (index: number, row: Message) => {
     await delBanWord(row.message_id)
-    const response = await getUserMsgList();
+    const response = await getBanWordList();
     data.value = await response.data;
     await alert("删除成功")
 }
@@ -41,7 +41,7 @@ const handleDelete = async (index: number, row: Message) => {
 onMounted(async () => {
     // 发起异步请求获取数据
     try {
-        const response = await getUserMsgList();
+        const response = await getBanWordList();
         data.value = await response.data;
     } catch (error) {
         console.error('数据加载失败', error);

@@ -4,8 +4,10 @@
             <div class="content-left">
                 <UserCard></UserCard>
                 <BanWord></BanWord>
+                <BanForm></BanForm>
             </div>
             <div class="content-center">
+                <NoteForm></NoteForm>
                 <NoteCard :isAdmin="isAdmin"></NoteCard>
                 <MsgCard :isAdmin="isAdmin"></MsgCard>
             </div>
@@ -23,6 +25,8 @@ import NoteCard from '../components/NoteCard.vue';
 import MsgCard from '../components/MsgCard.vue'
 import UserCard from '../components/UserCard.vue'
 import BanWord from '@/components/BanWord.vue';
+import BanForm from '@/components/BanForm.vue';
+import NoteForm from '@/components/NoteForm.vue';
 
 const router = useRouter();
 

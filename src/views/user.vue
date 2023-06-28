@@ -3,7 +3,7 @@
         <div class="box">
             <div class="box-content">
                 <span @click="toBBs">进入论坛</span>
-                <UserTable :uid="<string>uid"></UserTable>
+                <UserTable :uid="uid"></UserTable>
             </div>
         </div>
     </Layout>
@@ -15,6 +15,7 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 const uid = route.params.id
+
 const url = '/bbs/' + uid
 const toBBs = () => {
     router.push(url)
