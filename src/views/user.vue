@@ -15,15 +15,11 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 const uid = route.params.id
-
-console.log(localStorage.getItem('token'));
-
-
 const url = '/bbs/' + uid
-
 const toBBs = () => {
     router.push(url)
 }
+
 </script>
 <style lang='less' scoped>
 .box {

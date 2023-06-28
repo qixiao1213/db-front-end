@@ -3,6 +3,7 @@
         <div class="content">
             <div class="content-left">
                 <UserCard></UserCard>
+                <BanWord></BanWord>
             </div>
             <div class="content-center">
                 <NoteCard :isAdmin="isAdmin"></NoteCard>
@@ -21,7 +22,7 @@ import PostModCard from '../components/PostModCard.vue'
 import NoteCard from '../components/NoteCard.vue';
 import MsgCard from '../components/MsgCard.vue'
 import UserCard from '../components/UserCard.vue'
-
+import BanWord from '@/components/BanWord.vue';
 
 const router = useRouter();
 

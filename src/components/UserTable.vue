@@ -136,18 +136,25 @@ const isVisual = ref<boolean>(true)
 const size = ref('large')
 import { type UserInfo } from '../interface/index'
 import { getUserInfo } from '@/server';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 let data: Ref<UserInfo | undefined> = ref()// 异步加载的数据
 const isLoading = ref<boolean>(true); // 标记数据是否正在加载
 const route = useRoute()
+const router = useRouter()
 onMounted(async () => {
   // 发起异步请求获取数据
   try {
     const response = await getUserInfo(props.uid);
     data.value = await response.data;
-  } catch (error) {
-    console.error('数据加载失败', error);
+    await console.log(data);
+  } catch (error: any) {
+    console.log(error);
+    if (error.response.status === 422) {
+      console.log(data);
+      // alert('请登录')
+      // router.push('/')
+    }
   } finally {
     isLoading.value = false; // 数据加载完成，设置isLoading为false
   }

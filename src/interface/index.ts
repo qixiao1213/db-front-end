@@ -75,3 +75,7 @@ export interface PostCheck {
   user_id: string
   comment_id: string
 }
+
+export interface Banword {
+  
+}

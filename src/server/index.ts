@@ -1,11 +1,19 @@
 import axios from 'axios'
-import { type UserInfo } from '../interface/index'
 
 const baseUrl = "/api"
-const token = localStorage.getItem('token');
-export const showtoken = () => token
+
+
+
 // const baseUrl = "http://www.starstens.com:5000"
-const api = axios.create()
+const api = axios.create({
+    headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+    }
+})
+
+export const getToken = () => {
+    console.log(localStorage.getItem('token'));
+}
 export const signIn = (id: number, password: string) => {
     return api.post(baseUrl + '/user/login', {
         user_id: id,
@@ -30,6 +38,8 @@ export const postMsg = (content: string, useId: string) => api.post(baseUrl + '/
     }
 })
 export const getPostModList = () => api.get(baseUrl + '/post/check')
+export const getBanWordList = () => api.get(baseUrl + '/banword')
+
 export const postForm = (title: string, content: string, user_id: string) => api.post(baseUrl + 'post', {
     post_type: '1',
     comment_content: content,
@@ -46,6 +56,6 @@ export const delNote = (id: string | number | undefined) => api.delete(baseUrl +
 export const delUser = (id: string | number | undefined) => api.delete(baseUrl + '/user/' + id)
 export const delPost = (id: string | number | undefined) => api.delete(baseUrl + '/post/' + id)
 export const delComment = (id: string | number | undefined) => api.delete(baseUrl + '/post/comment/' + id)
-
+export const delBanWord = (id: string | number | undefined) => api.delete(baseUrl + '/banword/' + id)
 export const postCheck = (id: string | number | undefined) => api.get(baseUrl + '/post/check' + id)
 export const commentCheck = (id: string | number | undefined) => api.get(baseUrl + '/comment/check' + id)

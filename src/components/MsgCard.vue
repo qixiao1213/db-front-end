@@ -5,7 +5,7 @@
       <div v-if="isLoading">正在加载数据...</div>
       <div v-else>
         <!-- 数据加载完成后要渲染的内容 -->
-        <el-table :data="data" style="width: 100%" max-height="30em">
+        <el-table :data="data" style="width: 100%" max-height="25em">
           <el-table-column label="ID" v-if="props.isAdmin" prop="message_id" width="100" />
           <el-table-column label="Date" prop="create_time" width="200" />
           <el-table-column label="内容" prop="message_content" width="300" />

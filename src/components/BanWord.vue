@@ -5,10 +5,9 @@
             <div v-if="isLoading">正在加载数据...</div>
             <div v-else>
                 <!-- 数据加载完成后要渲染的内容 -->
-                <el-table :data="data" style="width: 100%" max-height="60em">
-                    <el-table-column label="ID" prop="user_id" width="150" />
-                    <el-table-column label="昵称" prop="nickname_text" width="100" />
-                    <el-table-column align="right" label="操作" width="150">
+                <el-table :data="data" style="width: 100%" max-height="25em">
+                    <el-table-column label="违禁词" prop="message_content" width="300" />
+                    <el-table-column align="right" label="操作" width="100">
                         <template #default="scope">
                             <el-button size="small" type="danger"
                                 @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
@@ -26,25 +25,24 @@
     
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { getUserList, delUser } from '@/server';
+import { delBanWord, delMsg, getUserMsgList } from '@/server';
 
-import { type UserInfo } from '../interface/index'
+import { type Message } from '../interface/index'
 const isLoading = ref(true); // 标记数据是否正在加载
 let data = ref(null); // 异步加载的数据
-const props = defineProps(['isAdmin']);
-const handleDelete = async (index: number, row: UserInfo) => {
-    await delUser(row.user_id)
-    await alert("删除成功")
-    const response = await getUserList();
-    data.value = await response.data.user_list;
-}
 
+const handleDelete = async (index: number, row: Message) => {
+    await delBanWord(row.message_id)
+    const response = await getUserMsgList();
+    data.value = await response.data;
+    await alert("删除成功")
+}
 
 onMounted(async () => {
     // 发起异步请求获取数据
     try {
-        const response = await getUserList();
-        data.value = await response.data.user_list;
+        const response = await getUserMsgList();
+        data.value = await response.data;
     } catch (error) {
         console.error('数据加载失败', error);
     } finally {
