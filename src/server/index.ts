@@ -49,7 +49,7 @@ export const postForm = (title: string, content: string) => api.post(baseUrl + '
         "Content-Type": 'application/json'
     }
 })
-export const commentForm = (post_id: string,comment_content: string) => api.post(baseUrl + '/comment/add', {
+export const commentForm = (post_id: string, comment_content: string) => api.post(baseUrl + '/comment/add', {
     post_id,
     comment_content
 }, {
@@ -66,7 +66,7 @@ export const msgForm = (message_content: string) => api.post(baseUrl + '/message
 })
 
 export const noteForm = (announce_content: string) => api.post(baseUrl + '/announcement/add', {
-    announce_content,
+    announce_content
 }, {
     headers: {
         "Content-Type": 'application/json'
@@ -87,5 +87,5 @@ export const delUser = (id: string | number | undefined) => api.delete(baseUrl +
 export const delPost = (id: string | number | undefined) => api.delete(baseUrl + '/post/' + id)
 export const delComment = (id: string | number | undefined) => api.delete(baseUrl + '/post/comment/' + id)
 export const delBanWord = (id: string | number | undefined) => api.delete(baseUrl + '/banword/' + id)
-export const postCheck = (id: string | number | undefined) => api.get(baseUrl + '/post/check' + id)
-export const commentCheck = (id: string | number | undefined) => api.get(baseUrl + '/post/comment/check' + id)
+export const postCheck = (id: string | number | undefined) => api.get(baseUrl + '/post/check/' + id)
+export const commentCheck = (id: string | number | undefined) => api.get(baseUrl + '/post/comment/check/' + id)

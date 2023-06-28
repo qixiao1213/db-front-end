@@ -23,10 +23,14 @@ const signClick = async () => {
         const response = await signIn(userId.value, password.value); // 登录请求
         if (response.data.msg_condition === 'login successful') {
             const token = response.data.access_token;
-            console.log(token);
             localStorage.setItem('token', token);
             router.push(`/user/${userId.value}`); // 跳转到用户页面
-        } else {
+        } else if (response.data.msg_condition === 'admin') {
+            const token = response.data.access_token;
+            localStorage.setItem('token', token);
+            router.push(`/admin/${userId.value}`); // 跳转到用户页面
+        }
+        else {
             alert('用户名或密码错误'); // 登录失败，弹出错误提示
         }
     } catch (error) {

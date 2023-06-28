@@ -6,14 +6,14 @@
             <div v-else>
                 <!-- 数据加载完成后要渲染的内容 -->
                 <el-table :data="data" style="width: 100%" max-height="60em">
-                    <el-table-column label="ID" prop="user_id" width="150" />
-                    <el-table-column label="email" prop="email" width="100" />
-                    <el-table-column align="right" label="操作" width="150">
+                    <el-table-column label="ID" prop="user_id" width="200" />
+                    <el-table-column label="email" prop="email" width="200" />
+                    <!-- <el-table-column align="right" label="操作" width="150">
                         <template #default="scope">
                             <el-button size="small" type="danger"
                                 @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
                         </template>
-                    </el-table-column>
+                    </el-table-column> -->
                 </el-table>
             </div>
         </template>

@@ -5,14 +5,8 @@
             <div v-if="isLoading">正在加载数据...</div>
             <div v-else>
                 <!-- 数据加载完成后要渲染的内容 -->
-                <el-table :data="data" style="width: 100%" max-height="25em">
-                    <el-table-column label="违禁词" prop="word" width="300" />
-                    <el-table-column align="right" label="操作" width="100">
-                        <template #default="scope">
-                            <el-button size="small" type="danger"
-                                @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
-                        </template>
-                    </el-table-column>
+                <el-table :data="data" style="width: 100%; margin-top: 30px;" max-height="25em">
+                    <el-table-column label="违禁词" prop="word" width="400" />
                 </el-table>
             </div>
         </template>
