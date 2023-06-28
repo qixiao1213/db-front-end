@@ -50,7 +50,14 @@ export const postForm = (title: string, content: string, user_id: string) => api
         "Content-Type": 'application/json'
     }
 })
-
+export const noteForm = (message_content: string, user_id: string) => api.post(baseUrl + 'announcement', {
+    message_content,
+    user_id
+}, {
+    headers: {
+        "Content-Type": 'application/json'
+    }
+})
 export const delMsg = (id: string | number | undefined) => api.delete(baseUrl + '/message/' + id)
 export const delNote = (id: string | number | undefined) => api.delete(baseUrl + '/announcement/' + id)
 export const delUser = (id: string | number | undefined) => api.delete(baseUrl + '/user/' + id)

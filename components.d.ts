@@ -24,6 +24,7 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     MsgCard: typeof import('./src/components/MsgCard.vue')['default']
     NoteCard: typeof import('./src/components/NoteCard.vue')['default']
+    NoteForm: typeof import('./src/components/noteForm.vue')['default']
     Post: typeof import('./src/components/post.vue')['default']
     PostCard: typeof import('./src/components/PostCard.vue')['default']
     PostForm: typeof import('./src/components/PostForm.vue')['default']

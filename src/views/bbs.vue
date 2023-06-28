@@ -6,6 +6,7 @@
       </div>
       <div class="box-new">
         <PostForm :user_id="user_id" ></PostForm>
+        <noteForm :user_id="user_id" ></noteForm>
       </div>
     </div>
   </Layout>
@@ -14,6 +15,8 @@
 import Layout from '../layout/Layout.vue'
 import PostForm from '../components/PostForm.vue';
 import PostUserCard from '../components/PostUserCard.vue';
+import noteForm from '@/components/noteForm.vue';
+
 import { useRoute } from 'vue-router';
 const route = useRoute()
 const user_id = route.params.id
