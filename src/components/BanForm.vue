@@ -23,7 +23,6 @@ const form = reactive({
 
 const onSubmit = async () => {
     const res = await banwordForm(form.content)
-    await console.log(res);
     if (res.status === 200) {
         form.content = ''
         alert('新增违禁词成功')

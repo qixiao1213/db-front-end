@@ -50,7 +50,6 @@ onMounted(async () => {
     try {
         const response = await getPostById(post_id as string);
         data.value = await response.data;
-        await console.log(data);
     } catch (error: any) {
         if (error.response.status === 422) {
             alert('请登录')

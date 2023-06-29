@@ -143,7 +143,6 @@ onMounted(async () => {
   try {
     const response = await getUserInfo(props.uid as string);
     data.value = await response.data;
-    await console.log(data);
   } catch (error: any) {
     console.log(error); 
   } finally {
