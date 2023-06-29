@@ -4,7 +4,7 @@
             <el-input v-model="form.content" type="textarea" />
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="onSubmit">发帖</el-button>
+            <el-button type="primary" @click="onSubmit">跟帖</el-button>
             <!-- <el-button>Cancel</el-button> -->
         </el-form-item>
     </el-form>

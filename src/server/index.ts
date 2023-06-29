@@ -49,7 +49,7 @@ export const postForm = (title: string, content: string) => api.post(baseUrl + '
         "Content-Type": 'application/json'
     }
 })
-export const commentForm = (post_id: string, comment_content: string) => api.post(baseUrl + '/comment/add', {
+export const commentForm = (post_id: string, comment_content: string) => api.post(baseUrl + '/post/comment/add', {
     post_id,
     comment_content
 }, {
