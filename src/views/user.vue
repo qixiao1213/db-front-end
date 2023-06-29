@@ -2,7 +2,7 @@
     <Layout>
         <div class="box">
             <div class="box-content">
-                <span @click="toBBs">进入论坛</span>
+                <span @click="toBBs" style="color:black" >进入论坛</span>
                 <UserTable :uid="uid"></UserTable>
             </div>
         </div>

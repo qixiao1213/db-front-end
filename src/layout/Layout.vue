@@ -17,7 +17,6 @@
         <div class="msg">
             <div style="color: black; text-align: center;margin-bottom: 5px;">留言</div>
             <MsgCard ></MsgCard>
-            <el-button type="primary" :icon="Edit" />
         </div>
     </div>
 </template>

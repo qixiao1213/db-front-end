@@ -4,9 +4,6 @@
       <!-- 异步加载的内容 -->
       <div>
         <el-descriptions class="margin-top" title="校友信息" :column="3" :size="size" border>
-          <template #extra>
-            <el-button type="primary" @click="isVisual = !isVisual">编辑</el-button>
-          </template>
           <el-descriptions-item>
             <template #label>
               <div class="cell-item">

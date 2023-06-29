@@ -39,7 +39,7 @@ onMounted(async () => {
   // 发起异步请求获取数据
   try {
     const response = await getPostModList();
-    data.value = await response.data.check;
+    data.value = await response.data.check; 
   } catch (error) {
     console.error('数据加载失败', error);
   } finally {
