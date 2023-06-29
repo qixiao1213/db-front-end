@@ -4,6 +4,7 @@
             <a href="https://github.com/IllyasvielEin/SchoolMater" target="_blank">
                 <img src="https://github.com/favicon.ico">
             </a>
+            <RouterLink style="position: fixed;left:1800px;z-index: 9999;" to="/">返回登录页</RouterLink>
         </div>
         <slot></slot>
         <div class="page-footer">
@@ -16,7 +17,7 @@
         </div>
         <div class="msg">
             <div style="color: black; text-align: center;margin-bottom: 5px;">留言</div>
-            <MsgCard ></MsgCard>
+            <MsgCard></MsgCard>
         </div>
     </div>
 </template>
